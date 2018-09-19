@@ -1,1 +1,22 @@
 {"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+{"message":"Server Start","level":"info"}
+${info.timestamp} [${info.label}] ${info.level}: ${info.message}
+${info.timestamp} [${info.label}] ${info.level}: ${info.message}
+2018-09-18T06:04:07.841Z [right meow!] info: Server Start
+2018-09-18T06:04:08.842Z [right meow!] info: Server Start
+2018-09-18T06:04:25.861Z [undefined] info: Server Start
+2018-09-18T06:04:26.865Z [undefined] info: Server Start
+2018-09-18T06:05:41.939Z [right meow!] info: Server Start
+2018-09-18T06:05:48.962Z [right meow!] info: Server Start
+2018-09-18T06:05:49.973Z [right meow!] info: Server Start
+2018-09-18T06:08:06.135Z [right meow!] info: Server Start
+2018-09-18T06:08:07.150Z [right meow!] info: Server Start
+2018-09-18T06:09:19.171Z [info]: Server Start
+2018-09-18T06:09:20.169Z [info]: Server Start
+2018-09-18T06:12:47.995Z [info]: Server Start
