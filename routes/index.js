@@ -12,7 +12,7 @@ router.get('/demoReady', function(req, res) {
 });
 
 // Demo result page
-router.get('/demoResult', function(req, res) {
+router.post('/demoResult', function(req, res) {
   res.render('demoResult');
 });
 
