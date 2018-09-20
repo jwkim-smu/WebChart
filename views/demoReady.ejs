@@ -67,6 +67,23 @@
 
 </section> <!-- end s-home -->
 
+<script>
+ $(function(){
+
+  //form 의 submit 이벤트 처리
+  $("#param").submit(function(){
+   //입력한 값을 읽어온다.
+   var name=$("input[name=name]").val();
+   var addr=$("input[name=addr]").val();
+   //ajax 방식으로 전송한다.
+   $.post("insert",{"name":name,"addr":addr},function(data){
+    alert(data);
+   });
+
+   return false; //기본 이벤트 막기 (페이지 이동하지 않도록)
+  });
+ });
+</script>
 
 <% include ./footer.ejs %>
 
