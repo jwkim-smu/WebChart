@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 9 ]><html class="no-js oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<% include ./header.ejs %>
+
+<!-- home
+================================================== -->
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
+
+    <!-- demo
+    ================================================== -->
+    <section id='demo_header' class="demo-content">
+        <div class="row home-content__main">
+
+            <div class="row section-header has-bottom-sep light-sep">
+                <div class="col-full">
+                    <h3 class="subhead">Demo page</h3>
+                    <h1 class="display-2 display-2--light">Set and Run Demo</h1>
+                </div>
+            </div> <!-- end section-header -->
+        </div> <!-- end intro-wrap -->
+        <div class="row home-content__content">
+            <div class="col-six tab-full" style="background:white;">
+              <h3 style="color:black;text-align:center;">Parameter Set</h3>
+
+              <div align="center">
+                <form action="setting" method="post" id="param">
+                  <ul class="stats-tabs" style="position:center;">
+                    <li style="width:40%">
+                      <em>Date</em></br>
+                      <input type="date" id="date" name="date" value="2018-09-20">
+                    </li>
+                    <li style="width:25%">
+                      <em>Start Time</em>
+                      <select style="width:50%;" id="startTime">
+                        <% for(var i=0; i<24; i++) { %>
+                          <option value=<%=i %>> <%=i %> </option>
+                        <% } %>
+                      </select>
+                    </li>
+                    <li style="width:25%">
+                      <em>End Time</em>
+                      <select style="width:50%;" id="endTime">
+                        <% for(var i=0; i<24; i++) { %>
+                          <option value=<%= i %>> <%=i %> </option>
+                        <% } %>
+                      </select>
+                    </li>
+                  </ul>
+                  <input class="btn--primary" type="submit" value="Submit">
+                </form>
+              </div>
+            </div>
+
+            <div class="col-six tab-full" style="background:white;">
+              <h3 style="color:black;text-align:center;">Demo Result</h3>
+            </div>
+        </div>
+    </section>
+
+</section> <!-- end s-home -->
+
+<script>
+ $(function(){
+
+  //form 의 submit 이벤트 처리
+  $("#param").submit(function(){
+   //입력한 값을 읽어온다.
+   var name=$("input[name=name]").val();
+   var addr=$("input[name=addr]").val();
+   //ajax 방식으로 전송한다.
+   $.post("insert",{"name":name,"addr":addr},function(data){
+    alert(data);
+   });
+
+   return false; //기본 이벤트 막기 (페이지 이동하지 않도록)
+  });
+ });
+</script>
+
+<% include ./footer.ejs %>
+
+</html>

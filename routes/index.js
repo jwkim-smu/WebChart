@@ -27,9 +27,9 @@ router.get('/', function(req, res) {
 });
 
 // Demo parameter setting page
-router.get('/demoReady', function(req, res) {
-  res.render('demoReady');
-  logger.info(req.ip + ' view demoReady');
+router.get('/demo', function(req, res) {
+  res.render('demo');
+  logger.info(req.ip + ' view demo page');
 });
 
 // Demo result page
