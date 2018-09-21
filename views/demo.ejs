@@ -31,6 +31,7 @@
               <h3 style="color:black;text-align:center;">Parameter Set</h3>
 
               <div align="center">
+
                 <form action="setting" method="post" id="param">
                   <ul class="stats-tabs" style="position:center;">
                     <li style="width:40%">
@@ -68,21 +69,26 @@
 </section> <!-- end s-home -->
 
 <script>
- $(function(){
-
-  //form 의 submit 이벤트 처리
-  $("#param").submit(function(){
-   //입력한 값을 읽어온다.
-   var name=$("input[name=name]").val();
-   var addr=$("input[name=addr]").val();
-   //ajax 방식으로 전송한다.
-   $.post("insert",{"name":name,"addr":addr},function(data){
-    alert(data);
-   });
-
-   return false; //기본 이벤트 막기 (페이지 이동하지 않도록)
+  $(function(){
+    // from's event handling
+    $("#param").submit(function(){
+      // read data
+      var date=$("input[name=date]").val();
+      var startTime=$("#startTime option:selected").val();
+      var endTime=$("#endTime option:selected").val();
+      // ajax
+      $.ajax({
+        type: "POST",
+        url: "/demoRequest",
+        data: {'date':date, 'startTime':startTime, 'endTime':endTime},
+        dataType:"json",
+        success: function(res){
+         // Chart
+        }
+      });
+      return false; // prevent page move
+    })
   });
- });
 </script>
 
 <% include ./footer.ejs %>

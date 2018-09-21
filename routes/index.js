@@ -14,11 +14,10 @@ const logger = createLogger({
     myFormat
   ),
   transports: [
-    new transports.Console(),
+    new transports.Console({ level: 'debug'}),
     new transports.File({filename: 'log/combined.log'})
-]
+ ]
 });
-
 
 // Main page
 router.get('/', function(req, res) {
@@ -32,10 +31,14 @@ router.get('/demo', function(req, res) {
   logger.info(req.ip + ' view demo page');
 });
 
-// Demo result page
-router.post('/demoResult', function(req, res) {
-  res.render('demoResult');
-  logger.info(req.ip + ' view demoResult');
+// Demo
+router.post('/demoRequest', function(req, res) {
+  logger.info(req.ip + ' try demo');
+  var date = req.body.date;
+  var startTime = req.body.startTime;
+  var endTime = req.body.endTime;
+
+  logger.debug(date + ' : ' + startTime + ' : ' + endTime);
 });
 
 module.exports = router;
