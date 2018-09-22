@@ -38,7 +38,15 @@ router.post('/demoRequest', function(req, res) {
   var startTime = req.body.startTime;
   var endTime = req.body.endTime;
 
-  logger.debug(date + ' : ' + startTime + ' : ' + endTime);
+  var sql = require('../models/db_sql')(date, startTime, endTime);
+  sql.select(function(err, data){
+    if(err) logger.error("sql error >> select");
+    else logger.debug(data);
+    sql.pool.end(function(err){
+      if(err) logger.error('connection pool error : close');
+      else logger.info('connection pool has closed');
+    })
+  })
 });
 
 module.exports = router;
