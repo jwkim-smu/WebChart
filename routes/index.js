@@ -1,23 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var logger = require('../modules/logger');
 
-const { createLogger, format, transports } = require('winston');
-const { combine, timestamp, label, printf } = format;
-
-const myFormat = printf(info => {
-  return `${info.timestamp} [${info.level}]: ${info.message}`;
-});
-
-const logger = createLogger({
-  format: combine(
-    timestamp(),
-    myFormat
-  ),
-  transports: [
-    new transports.Console({ level: 'debug'}),
-    new transports.File({filename: 'log/combined.log'})
- ]
-});
 
 // Main page
 router.get('/', function(req, res) {

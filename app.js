@@ -8,24 +8,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 
-
-const { createLogger, format, transports } = require('winston');
-const { combine, timestamp, label, printf } = format;
-
-const myFormat = printf(info => {
-  return `${info.timestamp} [${info.level}]: ${info.message}`;
-});
-
-const logger = createLogger({
-  format: combine(
-    timestamp(),
-    myFormat
-  ),
-  transports: [
-    new transports.Console({ level: 'debug'}),
-    new transports.File({filename: 'log/combined.log'})
-]
-});
+var logger = require('./modules/logger');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
