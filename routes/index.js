@@ -26,10 +26,6 @@ router.post('/demoRequest', function(req, res) {
   sql.select(function(err, data){
     if(err) logger.error("sql error >> select");
     else logger.debug(data);
-    sql.pool.end(function(err){
-      if(err) logger.error('connection pool error : close');
-      else logger.info('connection pool has closed');
-    })
   })
 });
 
