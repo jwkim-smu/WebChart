@@ -83,7 +83,13 @@
         data: {'date':date, 'startTime':startTime, 'endTime':endTime},
         dataType:"json",
         success: function(res){
-         // Chart
+          if(res.err != null) {
+            console.log(res.err);
+          }
+          else {
+            // Chart
+            console.log(res.data);
+          }
         }
       });
       return false; // prevent page move

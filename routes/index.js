@@ -24,8 +24,14 @@ router.post('/demoRequest', function(req, res) {
 
   var sql = require('../models/db_sql')(date, startTime, endTime);
   sql.select(function(err, data){
-    if(err) logger.error("sql error >> select");
-    else logger.debug(data);
+    if(err){
+      logger.error("sql error >> select")
+    };
+    for(var i=0; i<data.length; i++) {
+      logger.debug(data[i].id + ' : ' + data[i].time + ' : ' + data[i].hr);
+    }
+    res.send({data:data, err:err});
+
   })
 });
 
