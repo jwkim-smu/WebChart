@@ -62,40 +62,18 @@
 
             <div class="col-six tab-full" style="background:white;">
               <h3 style="color:black;text-align:center;">Demo Result</h3>
+                <div align="center">
+                  <canvas id="demoChart"></canvas>
+                </div>
             </div>
         </div>
     </section>
 
 </section> <!-- end s-home -->
 
-<script>
-  $(function(){
-    // from's event handling
-    $("#param").submit(function(){
-      // read data
-      var date=$("input[name=date]").val();
-      var startTime=$("#startTime option:selected").val();
-      var endTime=$("#endTime option:selected").val();
-      // ajax
-      $.ajax({
-        type: "POST",
-        url: "/demoRequest",
-        data: {'date':date, 'startTime':startTime, 'endTime':endTime},
-        dataType:"json",
-        success: function(res){
-          if(res.err != null) {
-            console.log(res.err);
-          }
-          else {
-            // Chart
-            console.log(res.data);
-          }
-        }
-      });
-      return false; // prevent page move
-    })
-  });
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="js/demoResult.js"></script>
+<script src="js/demoRequest.js"></script>
 
 <% include ./footer.ejs %>
 
