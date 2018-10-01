@@ -5,7 +5,7 @@ var logger = require('../modules/logger');
 module.exports = function (column, startTime, endTime) {
   return {
     // 함수 인자 가능한지?
-    select : function(callback) {
+    originalSelect : function(callback) {
       pool.getConnection(function(err, connection) {
         if(err){
           logger.error('db connection >> ' + err);
@@ -16,7 +16,24 @@ module.exports = function (column, startTime, endTime) {
           connection.query(sql, function (err, result, fields) {
             connection.release();
             if (err) return callback(err);
-            logger.debug('query success');
+            logger.debug('original data query success');
+            callback(null, result);
+          })
+        }
+      })
+    },
+    noisedSelect : function(callback) {
+      pool.getConnection(function(err, connection) {
+        if(err){
+          logger.error('db connection >> ' + err);
+          return callback(err);
+        }else{
+          logger.debug('db connected');
+          var sql = 'select * from noisedData';
+          connection.query(sql, function (err, result, fields) {
+            connection.release();
+            if (err) return callback(err);
+            logger.debug('noised data query success');
             callback(null, result);
           })
         }
