@@ -22,42 +22,38 @@ router.post('/demoRequest', function(req, res) {
   var startTime = req.body.startTime;
   var endTime = req.body.endTime;
 
-  var originalData;
-  var noisedData;
-  var errorMsg;
-
   var sql = require('../models/db_sql')(date, startTime, endTime);
-  async.parallel([
-    function(callback) {
-      // originalData query
-      sql.originalSelect(function(err, data){
+  async.parallel({
+    // originalData query
+    originalData : function(callback) {
+      sql.originalSelect(function(err, originalData){
         if(err){
           logger.error("sql error >> original select");
           callback(err);
         };
-        for(var i=0; i<data.length; i++) {
-          logger.debug(data[i].id + ' : ' + data[i].time + ' : ' + data[i].hr);
+        for(var i=0; i<originalData.length; i++) {
+          logger.debug(originalData[i].id + ' : ' + originalData[i].time + ' : ' + originalData[i].hr);
         }
-        originalData = data;
-        callback();
-      })
+        callback(null, originalData);
+      });
     },
     // noisedData query
-    function(callback) {
-      sql.noisedSelect(function(err, data){
+    noisedData : function(callback) {
+      sql.noisedSelect(function(err, noisedData){
         if(err){
           logger.error("sql error >> noised select");
           callback(err);
         };
-        for(var i=0; i<data.length; i++) {
-          logger.debug(data[i].id + ' : ' + data[i].time + ' : ' + data[i].hr);
+        for(var i=0; i<noisedData.length; i++) {
+          logger.debug(noisedData[i].id + ' : ' + noisedData[i].time + ' : ' + noisedData[i].hr);
         }
-        noisedData = data;
-      })
+        callback(null, noisedData);
+      });
     }
-  ], function(err){
+  }, function(err, results){
     if(err) logger.error(err);
-    res.send({originalData:originalData, noisedData:noisedData, err:err});
+    logger.debug("query Ok..");
+    res.send({originalData:results['originalData'], noisedData:results['noisedData'], err:err});
   });
 });
 
