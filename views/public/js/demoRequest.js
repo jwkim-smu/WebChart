@@ -15,9 +15,7 @@ $("#param").submit(function(){
       }
       else {
         // Chart
-        console.log(res.originalData);
-        console.log(res.noisedData);
-        demoResultChart(res.data);
+        demoResultChart(res.noisedData);
       }
     }
   });
