@@ -18,11 +18,10 @@ router.get('/demo', function(req, res) {
 // Demo
 router.post('/demoRequest', function(req, res) {
   logger.info(req.ip + ' try demo');
-  var date = req.body.date;
-  var startTime = req.body.startTime;
-  var endTime = req.body.endTime;
+  var date_from = req.body.date_from;
+  var date_to = req.body.date_to;
 
-  var sql = require('../models/db_sql')(date, startTime, endTime);
+  var sql = require('../models/db_sql')(date_from, date_to);
   async.parallel({
     // // originalData query
     // originalData : function(callback) {
@@ -45,7 +44,7 @@ router.post('/demoRequest', function(req, res) {
           callback(err);
         };
         for(var i=0; i<noisedData.length; i++) {
-          logger.debug(noisedData[i].hour + ' : ' + noisedData[i].noisedAvg);
+          logger.debug(noisedData[i].hour + ' : ' + noisedData[i].avg_noisedData);
         }
         callback(null, noisedData);
       });

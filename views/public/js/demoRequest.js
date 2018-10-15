@@ -1,13 +1,12 @@
 $("#param").submit(function(){
   // read data
-  var date=$("input[name=date]").val();
-  var startTime=$("#startTime option:selected").val();
-  var endTime=$("#endTime option:selected").val();
+  var date_from=$("input[name=date-from]").val();
+  var date_to=$("input[name=date-to]").val();
   // ajax
   $.ajax({
     type: "POST",
     url: "/demoRequest",
-    data: {'date':date, 'startTime':startTime, 'endTime':endTime},
+    data: {'date_from':date_from, 'date_to':date_to},
     dataType:"json",
     success: function(res){
       if(res.err != null) {
