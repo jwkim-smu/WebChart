@@ -46,7 +46,15 @@ var demoResultChart = function(noisedData) {
       },
 
       // Configuration options go here
-      options: {}
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              min: 0
+            }
+          }]
+        }
+      }
   });
 
 }

@@ -25,13 +25,21 @@
               <div align="center" style="padding-top:2rem">
                 <form action="setting" method="post" id="param">
                   <ul class="stats-tabs" style="position:center;">
-                    <li style="width:48%">
+                    <li style="width:35%">
                       <em>From</em></br>
                       <input type="date" id="date-from" name="date-from" value="2018-09-20">
                     </li>
-                    <li style="width:48%">
+                    <li style="width:35%">
                       <em>To</em></br>
                       <input type="date" id="date-to" name="date-to" value="2018-09-20">
+                    </li>
+                    <li style="width:25%">
+                      <em>Gender</em>
+                      <select style="width:50%;" id="gender">
+                        <option value="all">All</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
                     </li>
                   </ul>
                   <input class="btn--primary" type="submit" value="Submit">
